@@ -26,8 +26,19 @@ const fs = require('fs')
 
 function uppercase(callback) {
 	const namesFile = path.resolve(__dirname, 'names.txt')
-	console.log(namesFile)
-	console.log(fs.readFile(namesFile))
+
+	fs.readFile(namesFile, 'utf-8', (error, data) => {
+		if (error) throw error
+
+		const splitNames = data.split(';')
+		const upperNames = splitNames.map((name) => name.toUpperCase()).join(';')
+
+		fs.writeFile(namesFile, upperNames, 'utf-8', (writeErr) => {
+			if (writeErr) throw writeErr
+
+			callback(upperNames)
+		})
+	})
 }
 
 /**
@@ -37,5 +48,5 @@ function uppercase(callback) {
  * { a: a }
  */
 module.exports = {
-	uppercase: uppercase,
+	uppercase,
 }

@@ -14,7 +14,7 @@ const BASE_NUM = require('./constants')
  * 2.2. subtract(a, b)
  *    Takes 2 parameters `a` and `b` and returns `b` - `a`
  */
-
+console.log(BASE_NUM)
 function add(a, b) {
 	return a + b + BASE_NUM
 }
